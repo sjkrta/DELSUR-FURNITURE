@@ -1,9 +1,15 @@
-import { ShoppingCartOutlined} from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { popularProducts } from "../data";
+import { useState, useEffect } from "react";
 import { ratingStarGen } from "../ratingStarGen";
+import { CircularProgress } from "@material-ui/core";
+
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+
+import axios from "axios";
 
 const Container = styled.div`
   display: grid;
@@ -21,6 +27,9 @@ const ImgContainer = styled.div`
   height: 100%;
   display: grid;
   place-items: center;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const Image = styled.img`
@@ -29,8 +38,7 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
-const InfoContainer = styled.div`
-`;
+const InfoContainer = styled.div``;
 
 const Title = styled.h1`
   font-weight: 300;
@@ -79,6 +87,15 @@ const FilterSelect = styled.select`
   cursor: pointer;
 `;
 
+const Input = styled.input`
+  padding: 0.5rem;
+  max-width: 230px;
+  background-color: transparent;
+  border: 2px solid #c300ff83;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
 const FilterOption = styled.option`
   cursor: pointer;
 `;
@@ -105,61 +122,129 @@ const Button = styled.button`
   }
 `;
 
-const Product = () => {
+const Form = styled.form``;
+
+const Product = ({ productUrl }) => {
   let { productId } = useParams();
+  const [productItem, setProductItem] = useState(null);
+  const [error, setError] = useState(null);
+  const [productItemState, setProductItemState] = useState({
+    stock: 1,
+    size: null,
+    color: null,
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (productItemState.size === null || productItemState.color === null) {
+      console.log("Missing Field");
+      setError(true);
+    } else {
+      console.log(productItemState);
+      setError(false);
+    }
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setProductItemState({
+      ...productItemState,
+      [name]: value,
+    });
+  }
+
+  useEffect(() => {
+    axios.get(`${productUrl}${productId}`).then((res) => {
+      setProductItem(res.data);
+    });
+  }, []);
+
   return (
-    <Container>
-      <ImgContainer>
-        <Image src={popularProducts[productId].img} />
-      </ImgContainer>
-      <InfoContainer>
-        <Title>{popularProducts[productId].title}</Title>
-        <Ratings>
-          {ratingStarGen(popularProducts[productId].rating)}{" "}
-          <RatingsCount>
-            |{popularProducts[productId].ratingsCount}|
-          </RatingsCount>
-        </Ratings>
-        <Price>$ 20</Price>
-        <ActionContainer>
-          <Filter>
-            <FilterTitle>COLOR</FilterTitle>
-            <FilterSelect>
-              <FilterOption disabled selected>
-                SELECT
-              </FilterOption>
-              <FilterOption value="darkblue">Red</FilterOption>
-              <FilterOption value="gray">Black</FilterOption>
-            </FilterSelect>
-          </Filter>
-          <Filter>
-            <FilterTitle>SIZE</FilterTitle>
-            <FilterSelect>
-              <FilterOption disabled selected>
-                SELECT
-              </FilterOption>
-              <FilterOption value="S">S</FilterOption>
-              <FilterOption value="M">M</FilterOption>
-              <FilterOption value="L">L</FilterOption>
-              <FilterOption value="XL">XL</FilterOption>
-            </FilterSelect>
-          </Filter>
-          <Filter>
-            <FilterTitle>Quantity</FilterTitle>
-            <FilterSelect>
-              <FilterOption disabled selected>
-                SELECT
-              </FilterOption>
-              <FilterOption value="1">1</FilterOption>
-              <FilterOption value="2">2</FilterOption>
-              <FilterOption value="3">3</FilterOption>
-              <FilterOption value="4">4</FilterOption>
-            </FilterSelect>
-          </Filter>
-          <Button>ADD TO CART <ShoppingCartOutlined/></Button>
-        </ActionContainer>
-      </InfoContainer>
-    </Container>
+    <>
+      {productItem === null ? (
+        <CircularProgress />
+      ) : (
+        <Container>
+          <ImgContainer>
+            {productItem.images !== [] ? (
+              productItem.images.map((item) => (
+                <Image src={item.image} key={item.id} />
+              ))
+            ) : (
+              <></>
+            )}
+          </ImgContainer>
+          <InfoContainer>
+            <Title>{productItem.name}</Title>
+            <Ratings>
+              {ratingStarGen(productItem.rating)}{" "}
+              <RatingsCount>|{productItem.numReviews}|</RatingsCount>
+            </Ratings>
+            <Price>$ {productItem.price}</Price>
+            <Form onSubmit={handleSubmit}>
+              <ActionContainer>
+                <Filter>
+                  <FilterTitle>COLOR</FilterTitle>
+                  <FilterSelect
+                    defaultValue="SELECT"
+                    name="color"
+                    onChange={handleChange}
+                  >
+                    <FilterOption disabled>SELECT</FilterOption>
+                    {productItem.colors.map((item) => (
+                      <FilterOption value={item.id} key={item.id}>
+                        {item.color}
+                      </FilterOption>
+                    ))}
+                  </FilterSelect>
+                </Filter>
+                <Filter>
+                  <FilterTitle>SIZE</FilterTitle>
+                  <FilterSelect
+                    defaultValue="SELECT"
+                    name="size"
+                    onChange={handleChange}
+                  >
+                    <FilterOption disabled>SELECT</FilterOption>
+                    {productItem.types.map((item) => (
+                      <FilterOption value={item.id} key={item.id}>
+                        {item.name}
+                      </FilterOption>
+                    ))}
+                  </FilterSelect>
+                </Filter>
+                <Filter>
+                  <FilterTitle>Quantity</FilterTitle>
+                  <Input
+                    type="number"
+                    name="stock"
+                    min="1"
+                    onChange={handleChange}
+                    max={productItem.stock}
+                    value={productItemState.stock}
+                  />
+                </Filter>
+                <Button type="submit">
+                  ADD TO CART <ShoppingCartOutlined />
+                </Button>
+              </ActionContainer>
+            </Form>
+            <Stack sx={{ width: "100%" }} spacing={2}>
+              {error !== null &&
+                (error ? (
+                  <Alert severity="error">
+                    Missing Fields
+                  </Alert>
+                ) : (
+                  <Alert severity="success">
+                    Item added to cart.
+                  </Alert>
+                ))}
+            </Stack>
+          </InfoContainer>
+        </Container>
+      )}
+    </>
   );
 };
 

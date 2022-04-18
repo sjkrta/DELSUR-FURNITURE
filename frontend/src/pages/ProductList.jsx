@@ -37,7 +37,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const ProductList = () => {
+const ProductList = ({product}) => {
   return (
     <Container>
       <Title>ALL PRODUCTS</Title>
@@ -79,7 +79,7 @@ const ProductList = () => {
           </FilterItems>
         </Filter>
       </FilterContainer>
-      <Products />
+      <Products product={product}/>
     </Container>
   );
 };

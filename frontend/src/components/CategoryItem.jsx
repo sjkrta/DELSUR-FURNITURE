@@ -29,8 +29,8 @@ const CategoryItem = ({ item }) => {
   return (
     <Container>
       <Link to="/product/">
-        <Image src={item.img} />
-        <Title>{item.title}</Title>
+        <Image src={item.image} />
+        <Title>{item.name}</Title>
       </Link>
     </Container>
   );

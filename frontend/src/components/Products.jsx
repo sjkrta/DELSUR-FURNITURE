@@ -1,5 +1,5 @@
+import { CircularProgress } from "@material-ui/core";
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
 
 const Container = styled.div`
@@ -8,12 +8,14 @@ const Container = styled.div`
     gap:1rem;
 `;
 
-const Products = () => {
+const Products = ({product}) => {
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {product===null?<center><CircularProgress/></center>:
+      product.map((item) => (
         <Product item={item} key={item.id} />
-      ))}
+      ))
+}
     </Container>
   );
 };

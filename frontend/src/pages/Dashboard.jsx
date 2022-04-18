@@ -19,15 +19,16 @@ const DashboardTitle = styled.div`
   text-transform:uppercase;
 `
 
-const Dashboard = () => {
+const Dashboard = ({product, category}) => {
+
   return (
     <>
     <Slider />
     <Container>
       <DashboardTitle>Shop by category</DashboardTitle>
-      <Categories />
+      <Categories category={category}/>
       <DashboardTitle>Popular Products</DashboardTitle>
-      <Products/>
+      <Products product={product}/>
     </Container>
     </>
   );

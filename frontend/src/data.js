@@ -129,7 +129,7 @@ export const sliderItems = [
       ratingsCount:2,
     },
     {
-      id:1,
+      id:5,
       title:"Dresden Sectional Sofa",
       img:"https://res.cloudinary.com/brosa-design/image/fetch/c_fill,dpr_1.0,f_auto,h_630,q_auto:good,w_1125/https://s3-ap-southeast-2.amazonaws.com/brosadesign.com/products/3744/original/french%2520beige/cristoph-3-seater-sofa-french-beige-1.png",
       price:759,
@@ -137,7 +137,7 @@ export const sliderItems = [
       ratingsCount:10,
     },
     {
-      id:2,
+      id:6,
       title:"Tapas Rubberwood Timber Extension Dining Table (Table Only), 105-135cm",
       img:"https://cdn.livingstyles.com.au/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/T/T/TTAPAS.jpg",
       price:224.10,
@@ -145,7 +145,7 @@ export const sliderItems = [
       ratingsCount:5,
     },
     {
-      id:3,
+      id:7,
       title:"OVALIS Dining Table Petite Washed Natural",
       img:"https://i1.wp.com/www.lamaison.net.au/wp-content/uploads/2019/04/timthumb-1-2.png",
       price:1699,
@@ -153,7 +153,7 @@ export const sliderItems = [
       ratingsCount:4,
     },
     {
-      id:4,
+      id:8,
       title:"Dresden Sectional Sofa",
       img:"https://res.cloudinary.com/brosa-design/image/fetch/c_fill,dpr_1.0,f_auto,h_630,q_auto:good,w_1125/https://s3-ap-southeast-2.amazonaws.com/brosadesign.com/products/3744/original/french%2520beige/cristoph-3-seater-sofa-french-beige-1.png",
       price:759,

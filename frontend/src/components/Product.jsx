@@ -104,13 +104,12 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
-  const itemId = `${item.id - 1}`;
   return (
-    <Link to={"/product/"+itemId} style={{ flexGrow: 1 }}>
+    <Link to={"/product/"+item.id} style={{ flexGrow: 1 }}>
       <Container>
         <ImgContainer>
           <Circle />
-          <Image src={item.img} />
+          <Image src={item.images[0].image} />
           <Info>
             <Icon>
               <ShoppingCartOutlined />
@@ -124,9 +123,9 @@ const Product = ({ item }) => {
           </Info>
         </ImgContainer>
         <InfoContainer>
-          <Title>{item.title}</Title>
+          <Title>{item.name}</Title>
           <Ratings>
-            {ratingStarGen(item.rating)} <RatingsCount>( {item.ratingsCount} )</RatingsCount>
+            {ratingStarGen(item.rating)} <RatingsCount>( {item.numReviews} )</RatingsCount>
           </Ratings>
           <Price>$ {item.price}</Price>
         </InfoContainer>

@@ -29,7 +29,7 @@ router.register(r'category-product', views.CategoryProductViewSet),
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    re_path(r'^.*',TemplateView.as_view(template_name = 'index.html')),
+    path('',TemplateView.as_view(template_name = 'index.html')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
