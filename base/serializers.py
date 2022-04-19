@@ -1,8 +1,12 @@
 from django.forms import SlugField
 from rest_framework import serializers
-from .models import Color, Product,ProductType, ProductImage, Category, CategoryProduct
+from .models import Color, Product,ProductType, ProductImage, Category, CategoryProduct, Slider
 from django.contrib.auth.models import User
 
+class SliderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
+        fields = '__all__'
 
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:

@@ -14,9 +14,19 @@ const App = () => {
 
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
+  const [slider, setSlider] = useState(null);
 
+  const sliderUrl = `${url}slider/`;
   const productUrl = `${url}product/`;
   const categoryUrl = `${url}category/`;
+
+  useEffect(
+    () =>
+      axios.get(sliderUrl).then((res) => {
+        setSlider(res.data);
+      }),
+    []
+  );
 
   useEffect(
     () =>
@@ -45,7 +55,7 @@ const App = () => {
           <Route path="/" element={<Home />}>
             <Route
               path="/"
-              element={<Dashboard product={product} category={category} />}
+              element={<Dashboard product={product} category={category} slider={slider}/>}
             />
             <Route path="product" element={<ProductList product={product} />} />
             <Route

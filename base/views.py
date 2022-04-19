@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from .models import Product, ProductType, Category, CategoryProduct
-from .serializers import ProductSerializer,ProductTypeSerializer, CategorySerializer, CategoryProductSerializer
+from .models import Product, ProductType, Category, CategoryProduct, Slider
+from .serializers import ProductSerializer,ProductTypeSerializer, CategorySerializer, CategoryProductSerializer, SliderSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
+
+class SliderViewSet(viewsets.ModelViewSet):
+    queryset = Slider.objects.filter(featured=True)
+    serializer_class = SliderSerializer
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

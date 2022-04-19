@@ -1,7 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
-import { sliderItems } from "../data";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -38,7 +37,9 @@ const Wrapper = styled.div`
 const Slide = styled.div`
   width: 100vw;
   height: 85vh;
-  background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.9) ), url(${(props) => props.img}) no-repeat center;
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.9)),
+    url(${(props) => props.image}) no-repeat center;
+  background-color: ${(props) => props.bg_color};
   background-size: contain;
   color: white;
   display: grid;
@@ -72,35 +73,41 @@ const Button = styled.button`
   ${mobile({ fontSize: "10px" })}
 `;
 
-const Slider = () => {
+const Slider = ({ slider }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
-    const slides = sliderItems.length-1
+    const slides = slider.length - 1;
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex-1 : slides);
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : slides);
     } else {
-      setSlideIndex(slideIndex < slides ? slideIndex+1 : 0);
+      setSlideIndex(slideIndex < slides ? slideIndex + 1 : 0);
     }
   };
-
+  console.log(slider);
   return (
-    <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
-        <ArrowLeftOutlined />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id} img={item.img}>
-              <Title>{item.title}</Title>
-              <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowRightOutlined />
-      </Arrow>
-    </Container>
+    <>
+      {slider === null ? (
+        "loading"
+      ) : (
+        <Container>
+          <Arrow direction="left" onClick={() => handleClick("left")}>
+            <ArrowLeftOutlined />
+          </Arrow>
+          <Wrapper slideIndex={slideIndex}>
+            {slider.map((item) => (
+              <Slide bg_color={item.bg_color} key={item.id} image={item.image}>
+                <Title>{item.title}</Title>
+                <Desc>{item.description}</Desc>
+                <Button>SHOW NOW</Button>
+              </Slide>
+            ))}
+          </Wrapper>
+          <Arrow direction="right" onClick={() => handleClick("right")}>
+            <ArrowRightOutlined />
+          </Arrow>
+        </Container>
+      )}
+    </>
   );
 };
 

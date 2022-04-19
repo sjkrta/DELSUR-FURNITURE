@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+{% block root %}
+    <div class="loginform">
+        <div class="boxshadow">
+    <h1 class="">Login</h1>
+    <form method="post" style="width: 32rem;">
+            {% csrf_token %}
+            <div class="">
+                <!--Username / Email-->
+                <div class="">
+                    <label for="username">Username or Email address</label>
+                    <input id="username" name="username" placeholder="Username" value='{{username}}' type="text"/>
+                </div>
+                <!--Password-->
+                <div class="">
+                    <label for="password">Password </label>
+                    <input id="username" name="password" placeholder="Password" type="password" />
+                </div>
+                <div>
+                    <span class="">{{error}}</span>
+                </div>
+                <div>
+                    <p class="">
+                        Don't have an account yet? Create one <a class="" href={% url 'register' %}>here</a>
+                    </p>
+                </div>
+                <div class="">
+                    <button type="submit" class="">Log In</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock root %}

@@ -4,6 +4,18 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+class Slider(models.Model):
+    title  = models.CharField(max_length=50)
+    description = models.TextField(max_length=200)
+    image = models.ImageField(upload_to='slider')
+    bg_color = models.CharField(max_length=50, default='#ffffff')
+    featured = models.BooleanField(default=False)
+    link_to = models.CharField(default='', max_length=100)
+
+    def __str__(self):
+        return self.title
+
+
 class Address(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     street  = models.CharField(max_length=100)
