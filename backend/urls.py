@@ -33,7 +33,7 @@ urlpatterns = [
     path('register/', views_accounts.register_view, name='register'),
     path('login/', views_accounts.login_view, name='login'),
     path('logout/', views_accounts.logout_view, name='logout'),
-    path('',TemplateView.as_view(template_name = 'index.html'), name='home'),
+    path('', views.index, name='home'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

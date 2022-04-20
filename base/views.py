@@ -4,6 +4,9 @@ from .serializers import ProductSerializer,ProductTypeSerializer, CategorySerial
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 
+def index(request):
+    return render(request, 'index.html')
+
 class SliderViewSet(viewsets.ModelViewSet):
     queryset = Slider.objects.filter(featured=True)
     serializer_class = SliderSerializer
