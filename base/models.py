@@ -2,8 +2,17 @@ from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from django.forms import CharField, ImageField
 
 # Create your models here.
+class Image(models.Model):
+    image = models.ImageField()
+    alt = models.CharField(max_length=100)
+    uploaded_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.alt
+
 class Slider(models.Model):
     title  = models.CharField(max_length=50)
     description = models.TextField(max_length=200)

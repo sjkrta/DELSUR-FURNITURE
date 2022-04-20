@@ -77,12 +77,12 @@ const Navbar = () => {
           </Link>
         </Center>
         <Right>
-          <Link to="/register/">
+          <a href='/register/'>
             <MenuItem>REGISTER</MenuItem>
-          </Link>
-          <Link to="/login/">
+          </a>
+          <a href='/login/'>
             <MenuItem>SIGN IN</MenuItem>
-          </Link>
+          </a>
           <Link to="/cart/">
             <MenuItem>
               <Badge badgeContent={4} color="primary">
