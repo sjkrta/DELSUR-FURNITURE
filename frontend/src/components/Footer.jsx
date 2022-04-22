@@ -10,20 +10,29 @@ import {
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
+const Main = styled.div`
+  margin-top: 2rem;
+  background-color: white;
+`;
+
 const Container = styled.div`
   display: flex;
+  max-width: 1400px;
+  margin: auto;
   ${mobile({ flexDirection: "column" })}
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
- text-align: center;
+  text-align: center;
   flex-direction: column;
   padding: 20px;
 `;
 
-const Logo = styled.h1``;
+const Logo = styled.h1`
+  color: purple;
+`;
 
 const Desc = styled.p`
   margin: 20px 0px;
@@ -32,6 +41,7 @@ const Desc = styled.p`
 const SocialContainer = styled.div`
   display: flex;
   justify-content: center;
+  padding: 1rem 0;
 `;
 
 const SocialIcon = styled.div`
@@ -49,13 +59,15 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   text-align: center;
   flex: 2;
+  display: grid;
+  justify-content: space-between;
   padding: 20px;
-  ${mobile({ display: "none" })}
+  /* ${mobile({ display: "none" })} */
 `;
 
 const Title = styled.h3`
- text-transform: uppercase;
- margin-bottom: 30px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
 `;
 
 const List = styled.ul`
@@ -76,7 +88,6 @@ const Right = styled.div`
   text-align: center;
   padding: 20px;
   ${mobile({ backgroundColor: "#fff8f8" })}
-
 `;
 
 const ContactItem = styled.div`
@@ -84,67 +95,69 @@ const ContactItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
- 
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Footer = () => {
   return (
-    <Container>
-      <Left>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Kitchen</ListItem>
-          <ListItem>Living Room</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
-        </List>
-      </Left>
-      <Center>
-        <Logo>Delsur Furniture.</Logo>
-        <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
-        </Desc>
-        <SocialContainer>
-          <SocialIcon color="3B5999">
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon color="E4405F">
-            <Instagram />
-          </SocialIcon>
-          <SocialIcon color="55ACEE">
-            <Twitter />
-          </SocialIcon>
-          <SocialIcon color="E60023">
-            <Pinterest />
-          </SocialIcon>
-        </SocialContainer>
-      </Center>
-      <Right>
-        <Title>Contact</Title>
-        <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 123 Random st, NSW
-        </ContactItem>
-        <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
-        </ContactItem>
-        <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@sjkrta.dev
-        </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
-      </Right>
-    </Container>
+    <Main>
+      <Container>
+        <Left>
+          <Title>Useful Links</Title>
+          <List>
+            <ListItem>Home</ListItem>
+            <ListItem>Cart</ListItem>
+            <ListItem>Kitchen</ListItem>
+            <ListItem>Living Room</ListItem>
+            <ListItem>Accessories</ListItem>
+            <ListItem>My Account</ListItem>
+            <ListItem>Order Tracking</ListItem>
+            <ListItem>Wishlist</ListItem>
+            <ListItem>Wishlist</ListItem>
+            <ListItem>Terms</ListItem>
+          </List>
+        </Left>
+        <Center>
+          <Logo>Delsur Furniture.</Logo>
+          <Desc>
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have suffered alteration in some form, by injected
+            humour, or randomised words which don’t look even slightly
+            believable.
+          </Desc>
+          <SocialContainer>
+            <SocialIcon color="3B5999">
+              <Facebook />
+            </SocialIcon>
+            <SocialIcon color="E4405F">
+              <Instagram />
+            </SocialIcon>
+            <SocialIcon color="55ACEE">
+              <Twitter />
+            </SocialIcon>
+            <SocialIcon color="E60023">
+              <Pinterest />
+            </SocialIcon>
+          </SocialContainer>
+        </Center>
+        <Right>
+          <Title>Contact</Title>
+          <ContactItem>
+            <Room style={{ marginRight: "10px" }} /> 123 Random st, NSW
+          </ContactItem>
+          <ContactItem>
+            <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          </ContactItem>
+          <ContactItem>
+            <MailOutline style={{ marginRight: "10px" }} /> contact@sjkrta.dev
+          </ContactItem>
+          <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
+        </Right>
+      </Container>
+    </Main>
   );
 };
 

@@ -6,6 +6,8 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap:1rem;
+    border-radius: 10px;
+    padding: 1.5rem;
 `;
 
 const Products = ({product}) => {

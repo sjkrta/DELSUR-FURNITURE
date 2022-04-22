@@ -34,59 +34,70 @@ const Wrapper = styled.div`
   transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
-const Slide = styled.div`
+const Sliders = styled.div`
   width: 100vw;
-  height: 85vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.9)),
-    url(${(props) => props.image}) no-repeat center;
-  background-color: ${(props) => props.bg_color};
-  background-size: contain;
-  color: white;
+  background: linear-gradient(${(props) => props.bg_color}, #ffffff16);
+`;
+const Content = styled.div`
+  text-align: center;
+  padding: 1.5rem;
+`;
+const Slide = styled.div`
+  max-width: 1400px;
+  margin: auto;
+  height: 500px;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
-  align-content: end;
-  ${mobile({ height: "400px" })}
+  align-items: center;
+  ${mobile({ gridTemplateColumns:"1fr" })}
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+  ${mobile({ height:"250px" })}
 `;
 
 const Title = styled.h1`
-  font-size: 75px;
-  ${mobile({ fontSize: "45px" })}
+  font-size: 2.7rem;
+  color: purple;
 `;
 
 const Desc = styled.p`
   margin: 20px 10px;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 3px;
-  ${mobile({ fontSize: "15px" })}
 `;
 
 const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  background-color: purple;
+  color: white;
+  border-radius: 5px;
   font-weight: bold;
   letter-spacing: 1px;
-  background-color: white;
-  color: black;
   cursor: pointer;
-  margin-bottom: 2rem;
   ${mobile({ fontSize: "10px" })}
 `;
 
-const Slider = ({ slider }) => {
+const Slider = ({ slides }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
-    const slides = slider.length - 1;
+    const slide = slides.length - 1;
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : slides);
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : slide);
     } else {
-      setSlideIndex(slideIndex < slides ? slideIndex + 1 : 0);
+      setSlideIndex(slideIndex < slide ? slideIndex + 1 : 0);
     }
   };
-  console.log(slider);
   return (
     <>
-      {slider === null ? (
+      {slides === null ? (
         "loading"
       ) : (
         <Container>
@@ -94,12 +105,17 @@ const Slider = ({ slider }) => {
             <ArrowLeftOutlined />
           </Arrow>
           <Wrapper slideIndex={slideIndex}>
-            {slider.map((item) => (
-              <Slide bg_color={item.bg_color} key={item.id} image={item.image}>
-                <Title>{item.title}</Title>
-                <Desc>{item.description}</Desc>
-                <Button>SHOW NOW</Button>
-              </Slide>
+            {slides.map((item) => (
+              <Sliders key={item.id} bg_color={item.bg_color}>
+                <Slide>
+                  <Image src={item.image} />
+                  <Content>
+                    <Title>{item.title}</Title>
+                    <Desc>{item.description}</Desc>
+                    <Button>SHOW NOW</Button>
+                  </Content>
+                </Slide>
+              </Sliders>
             ))}
           </Wrapper>
           <Arrow direction="right" onClick={() => handleClick("right")}>

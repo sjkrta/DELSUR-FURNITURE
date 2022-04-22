@@ -66,7 +66,6 @@ const ImgContainer = styled.div`
   border-radius: 25px;
   margin-bottom: 1rem;
   justify-content: center;
-  background-color: #f5fbfd;
   position: relative;
   overflow:hidden;
   &:hover ${Info} {
@@ -84,6 +83,8 @@ const Circle = styled.div`
 
 const Image = styled.img`
   width:100%;
+  height: 100%;
+  object-fit: contain;
   z-index: 2;
 `;
 
@@ -113,12 +114,6 @@ const Product = ({ item }) => {
           <Info>
             <Icon>
               <ShoppingCartOutlined />
-            </Icon>
-            <Icon>
-              <SearchOutlined />
-            </Icon>
-            <Icon>
-              <FavoriteBorderOutlined />
             </Icon>
           </Info>
         </ImgContainer>

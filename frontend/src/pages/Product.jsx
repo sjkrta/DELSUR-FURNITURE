@@ -15,9 +15,12 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  max-width: 1200px;
-  padding: 50px;
-  margin: auto;
+  max-width: 1400px;
+  padding: 2rem;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  border-radius: 10px;
   gap: 50px;
   ${mobile({ gridTemplateColumns: "1fr" })}
 `;

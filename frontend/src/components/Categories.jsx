@@ -12,6 +12,7 @@ const Container = styled.div`
   overscroll-behavior-inline: contain;
   grid-template-rows: min-content;
   scroll-snap-type: inline mandatory;
+  border-radius: 20px;
   scroll-padding-inline: 1rem;
   & > * {
     scroll-snap-align: start;

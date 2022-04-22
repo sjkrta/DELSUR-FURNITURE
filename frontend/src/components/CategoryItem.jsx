@@ -9,12 +9,12 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  height: 150px;
-  width: 150px;
-  padding: 10px;
+  height: 170px;
+  width: 170px;
+  padding: 1rem;
   border-radius: 50%;
-  border: 3px solid #ffecff;
   object-fit: contain;
+  background-color: #ffc352;
   ${mobile({})}
 `;
 
@@ -22,7 +22,7 @@ const Title = styled.p`
 margin: 1rem 0;
 text-align: center;
 font-weight: bold;
-color: black;
+color: purple;
 `;
 
 const CategoryItem = ({ item }) => {

@@ -1,43 +1,67 @@
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
-import React from "react";
+import { SearchRounded, ShoppingCartOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
-const Container = styled.div`
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+  padding: 0.5rem 2rem;
   display: grid;
-  grid-template-columns:max-content auto max-content;
+  gap: 2rem;
+  grid-template-columns: max-content auto max-content;
   align-items: center;
-  justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+${mobile({padding:"1rem"})};
 `;
 
-const Left = styled.div`
-  display: flex;
-  align-items: center;
+const Left = styled.div``
+
+const Center = styled.div`
+${mobile({display:"none"})};
 `;
 
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
+const Right = styled.div`
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-  margin-left: 25px;
-  padding: 5px;
+  justify-content: end;
+  justify-items: end;
+  gap: 1rem;
+  ${mobile({})}
+`;
+
+const Form = styled.form`
+  display: grid;
+  grid-template-columns: auto max-content;
+  border-radius: 10px;
+  background-color: white;
+  padding: 0 0.5rem;
 `;
 
 const Input = styled.input`
   border: none;
-  ${mobile({ width: "50px" })}
+  background-color: white;
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  color: #3e3e3e;
+  padding: 0.5rem;
+  &:focus{
+    outline: none;
+  }
 `;
 
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
+const Button = styled.button`
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: purple;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Logo = styled.h1`
@@ -45,43 +69,41 @@ const Logo = styled.h1`
   letter-spacing: 2px;
   ${mobile({ fontSize: "24px" })}
 `;
-const Right = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
-`;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 1.1rem;
   cursor: pointer;
-  margin-left: 25px;
-  color:purple;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  color: purple;
+  ${mobile({})}
 `;
 
 const Navbar = () => {
+  const handleForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
+          <Link to="/">
+            <Logo>DELSUR.</Logo>
+          </Link>
         </Left>
         <Center>
-          <Link to="/">
-            <Logo>DELSUR FURNITURE.</Logo>
-          </Link>
+          <Form onSubmit={handleForm}>
+            <Input type="text" id="search" />
+            <Button type="submit">
+              <SearchRounded />
+            </Button>
+          </Form>
         </Center>
         <Right>
-          <a href='/register/'>
-            <MenuItem>REGISTER</MenuItem>
+          <a href="/register/">
+            <MenuItem>Register</MenuItem>
           </a>
-          <a href='/login/'>
-            <MenuItem>SIGN IN</MenuItem>
+          <a href="/login/">
+            <MenuItem>Sign In</MenuItem>
           </a>
           <Link to="/cart/">
             <MenuItem>
