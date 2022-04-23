@@ -30,7 +30,7 @@ const ImgContainer = styled.div`
   height: 100%;
   display: grid;
   place-items: center;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -67,8 +67,7 @@ const Price = styled.p`
 
 const ActionContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 1rem 0;
 `;
 
@@ -84,15 +83,6 @@ const FilterTitle = styled.h4`
 const FilterSelect = styled.select`
   padding: 0.5rem;
   max-width: 250px;
-  background-color: transparent;
-  border: 2px solid #c300ff83;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
-const Input = styled.input`
-  padding: 0.5rem;
-  max-width: 230px;
   background-color: transparent;
   border: 2px solid #c300ff83;
   border-radius: 10px;
@@ -133,8 +123,7 @@ const Product = ({ productUrl }) => {
   const [error, setError] = useState(null);
   const [productItemState, setProductItemState] = useState({
     stock: 1,
-    size: null,
-    color: null,
+    color: 1,
   });
 
   function handleSubmit(e) {
@@ -162,6 +151,17 @@ const Product = ({ productUrl }) => {
     });
   }, []);
 
+  const stockNumber = (item) => {
+    let stock = [];
+    for (let i = 1; i <= productItem.stock; i++) {
+      stock.push(
+        <FilterOption value={item.id} key={item.id}>
+          {i}
+        </FilterOption>
+      );
+    }
+    return stock;
+  };
   return (
     <>
       {productItem === null ? (
@@ -188,12 +188,7 @@ const Product = ({ productUrl }) => {
               <ActionContainer>
                 <Filter>
                   <FilterTitle>COLOR</FilterTitle>
-                  <FilterSelect
-                    defaultValue="SELECT"
-                    name="color"
-                    onChange={handleChange}
-                  >
-                    <FilterOption disabled>SELECT</FilterOption>
+                  <FilterSelect name="color" onChange={handleChange}>
                     {productItem.colors.map((item) => (
                       <FilterOption value={item.id} key={item.id}>
                         {item.color}
@@ -202,30 +197,10 @@ const Product = ({ productUrl }) => {
                   </FilterSelect>
                 </Filter>
                 <Filter>
-                  <FilterTitle>SIZE</FilterTitle>
-                  <FilterSelect
-                    defaultValue="SELECT"
-                    name="size"
-                    onChange={handleChange}
-                  >
-                    <FilterOption disabled>SELECT</FilterOption>
-                    {productItem.types.map((item) => (
-                      <FilterOption value={item.id} key={item.id}>
-                        {item.name}
-                      </FilterOption>
-                    ))}
+                  <FilterTitle>QUANTITY</FilterTitle>
+                  <FilterSelect name="stock" onChange={handleChange}>
+                    {stockNumber(productItem)}
                   </FilterSelect>
-                </Filter>
-                <Filter>
-                  <FilterTitle>Quantity</FilterTitle>
-                  <Input
-                    type="number"
-                    name="stock"
-                    min="1"
-                    onChange={handleChange}
-                    max={productItem.stock}
-                    value={productItemState.stock}
-                  />
                 </Filter>
                 <Button type="submit">
                   ADD TO CART <ShoppingCartOutlined />
@@ -235,13 +210,9 @@ const Product = ({ productUrl }) => {
             <Stack sx={{ width: "100%" }} spacing={2}>
               {error !== null &&
                 (error ? (
-                  <Alert severity="error">
-                    Missing Fields
-                  </Alert>
+                  <Alert severity="error">Missing Fields</Alert>
                 ) : (
-                  <Alert severity="success">
-                    Item added to cart.
-                  </Alert>
+                  <Alert severity="success">Item added to cart.</Alert>
                 ))}
             </Stack>
           </InfoContainer>

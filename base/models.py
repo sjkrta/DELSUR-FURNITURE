@@ -118,25 +118,23 @@ class Order(models.Model):
         ('D','Delivered'),
     ]
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    payment_method = models.CharField(max_length=200)
+    order_uuid = models.CharField(max_length=15)
+    payment_method = models.CharField(max_length=200, blank=True, null=True)
     shippingPrice = models.DecimalField(max_digits=12,decimal_places=2)
     total_price = models.DecimalField(max_digits=12, decimal_places = 2)
-    delivery = models.CharField(max_length=1,choices=Delivery_choices)
+    delivery_choice = models.CharField(max_length=1,choices=Delivery_choices)
     status = models.CharField(max_length=1,choices=Status_choices,default=Status_choices[0])
     created_at= models.DateTimeField(auto_now_add = True)
-    paid_at= models.DateTimeField(auto_now_add = False)
-    delivered_at= models.DateTimeField(auto_now_add = False)
-    updated_at= models.DateTimeField(auto_now_add = True)
+    paid_at= models.DateTimeField(auto_now_add = False, null=True, blank=True)
+    delivered_at= models.DateTimeField(auto_now_add = False, null=True, blank=True)
+    # updated_at= models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return self.id
+        return self.order_uuid
 
 class OrderItem(models.Model):
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, related_name='orderItem' ,on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places = 2)
     quantity = models.IntegerField()
     created_at= models.DateTimeField(auto_now_add = True)
-
-    def __str__(self):
-        return self.product_id.name

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Product, ProductType, Category, CategoryProduct, Slider
-from .serializers import ProductSerializer,ProductTypeSerializer, CategorySerializer, CategoryProductSerializer, SliderSerializer
+from .models import Order, OrderItem, Product, ProductType, Category, CategoryProduct, Slider
+from .serializers import OrderItemSerializer, OrderSerializer, ProductSerializer,ProductTypeSerializer, CategorySerializer, CategoryProductSerializer, SliderSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 
@@ -22,3 +22,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class CategoryProductViewSet(viewsets.ModelViewSet):
     queryset = CategoryProduct.objects.all()
     serializer_class = CategoryProductSerializer
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    

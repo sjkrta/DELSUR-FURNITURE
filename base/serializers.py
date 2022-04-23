@@ -1,7 +1,17 @@
-from django.forms import SlugField
 from rest_framework import serializers
-from .models import Color, Product,ProductType, ProductImage, Category, CategoryProduct, Slider
+from .models import Color, Order, Product,ProductType, ProductImage, Category, CategoryProduct, Slider, OrderItem
 from django.contrib.auth.models import User
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    orderItem = OrderItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = Order
+        fields = '__all__'
 
 class SliderSerializer(serializers.ModelSerializer):
     class Meta:

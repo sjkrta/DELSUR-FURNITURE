@@ -1,248 +1,316 @@
-import { Add, Remove } from "@material-ui/icons";
+import { Description, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
-max-width: 1200px;
-margin: auto;
-padding: 50px;
-`;
-
-const Wrapper = styled.div`
-  padding: 20px;
-  ${mobile({ padding: "10px" })}
+  max-width: 1400px;
+  margin: auto;
+  padding: 50px;
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
-  text-align: center;
+  font-size: 1.5rem;
+  color: purple;
 `;
 
-const Top = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-`;
-
-const TopButton = styled.button`
-  padding: 10px;
+const Button = styled.button`
+  padding: 0.7rem 1rem;
+  letter-spacing: 1px;
   font-weight: 600;
+  border-radius: 5px;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
+  margin: 0.5rem 0;
+  border: 1px solid purple;
+  color: ${(props) => (props.bg === "purple" ? "white" : "purple")};
   background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+    props.bg === "purple" ? "purple" : "transparent"};
+  &:hover {
+    background-color: #570057;
+    color: white;
+  }
 `;
 
-const TopTexts = styled.div`
-  ${mobile({ display: "none" })}
+const CartContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 325px;
+  align-items: start;
+  gap: 1rem;
+  ${mobile({ gridTemplateColumns: "1fr" })}
 `;
-const TopText = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0px 10px;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-
-`;
-
-const Info = styled.div`
-  flex: 3;
-`;
+const Left = styled.div``;
 
 const Product = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-`;
-
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
-`;
-
-const Image = styled.img`
-  width: 200px;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ProductAmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const ProductAmount = styled.div`
-  font-size: 24px;
-  margin: 5px;
-  ${mobile({ margin: "5px 15px" })}
-`;
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
+  display: grid;
+  gap: 1rem;
 `;
 
 const Hr = styled.hr`
-  background-color: #eee;
+  margin: 1rem 0;
+`;
+
+const ProductDetail = styled.div`
+padding: 1rem;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  gap: 1rem;
+  border: 1px solid #80008077;
+  border-radius: 10px;
+`;
+
+const Image = styled.img`
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+`;
+
+const Info = styled.div`
+  background-color: #ffd6ff;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  border-radius: 10px;
+`;
+const InfoTitle = styled.h2`
+  color: purple;
+`;
+const InfoDetail = styled.p`
+  color: purple;
+  padding: 0.5rem 0;
+`;
+const InfoTerm = styled.div`
+  color: black;
+  font-size: 0.8rem;
+`;
+
+const ProductTitle = styled.h3`
+  margin-bottom: 0.7rem;
+`;
+const ProductInfo = styled.div`
+  display: grid;
+  justify-content: start;
+  padding: 0.5rem;
+`;
+const Color = styled.p`
+  display: grid;
+  grid-template-columns: 80px auto;
+`;
+const Quantity = styled.p`
+  display: grid;
+  grid-template-columns: 80px auto;
+`;
+const Price = styled.p`
+  display: grid;
+  grid-template-columns: 80px auto;
+`;
+
+const Fieldset = styled.fieldset``;
+
+const Right = styled.fieldset`
+  display: grid;
+  padding: 1rem;
+  border-radius: 10px;
+`;
+
+const Legend = styled.legend`
+  font-size: 1.5rem;
+  padding: 0.5rem;
+`;
+
+const A = styled.a`
+  color: black;
+  font-weight: bold;
+`;
+
+const Select = styled.select`
+  background-color: transparent;
+  padding: 0.3rem;
+  width: 120px;
+`;
+
+const OrderDetail = styled.div`
+  font-size: 1.5rem;
+`;
+
+const Input = styled.input`
   border: none;
-  height: 1px;
+  background-color: transparent;
+  width: 100%;
+  font-size: 1.5rem;
+  margin: 0.2rem 0;
+  text-align: center;
+  color: gray;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Summary = styled.div`
-  flex: 1;
-  border: 0.5px solid lightgray;
-  border-radius: 10px;
-  padding: 20px;
-  height: 50vh;
+  text-align: center;
 `;
 
-const SummaryTitle = styled.h1`
-  font-weight: 200;
+const OrderInfo = styled.p`
+  text-align: center;
+  color: gray;
 `;
 
-const SummaryItem = styled.div`
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  font-size: ${(props) => props.type === "total" && "24px"};
+const ShippingInfo = styled.p`
+  text-align: center;
+  color: gray;
 `;
 
-const SummaryItemText = styled.span``;
+const LegendCoupon = styled.legend`
+  padding: 0 1rem;
+`;
 
-const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
+const ButtonCoupon = styled.button`
+  border: 1px solid purple;
+  padding: 0.7rem;
+  margin: 0.25rem;
+  align-self: end;
+  border-radius: 5px;
   color: white;
-  font-weight: 600;
+  background-color: purple;
+  &:hover{
+    cursor:pointer;
+  }
+`;
+
+const CouponContainer = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto max-content;
+`;
+
+const Option = styled.option``;
+const Label = styled.label``;
+const LeftSide = styled.div``;
+const RightSide = styled.div``;
+const RemoveButton = styled.button`
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  background-color: transparent;
+  color: purple;
+  border: 1px solid purple;
+  width: 200px;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-weight: bold;
+  &:hover {
+    background-color: purple;
+    color: white;
+  }
 `;
 
 const Cart = () => {
   return (
     <Container>
-      <Wrapper>
-        <Title>YOUR BAG</Title>
-        <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
-        </Top>
-        <Bottom>
+      <Title>YOUR CART ( 1 )</Title>
+      <CartContainer>
+        <Left>
+          <Hr />
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://clipart.info/images/ccovers/1496091499Furniture-PNG-Picture-oriental.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Tapas Rubberwood Timber Extension Dining Table (Table Only), 105-135cm
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://res.cloudinary.com/brosa-design/image/fetch/c_fill,dpr_1.0,f_auto,h_630,q_auto:good,w_1125/https://s3-ap-southeast-2.amazonaws.com/brosadesign.com/products/3744/original/french%2520beige/cristoph-3-seater-sofa-french-beige-1.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Dresden Sectional Sofa
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
+            <InfoTitle>15% OFF ALL FURNITURE</InfoTitle>
+            <InfoDetail>
+              Apply promo code <b>DELSUR2022</b> to get the discount.
+            </InfoDetail>
+            <InfoTerm>
+              Offer ends 25th May. <A href="#">T&C Apply</A>
+            </InfoTerm>
           </Info>
+          <Hr />
+          <Product>
+            <ProductDetail>
+              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
+              <ProductInfo>
+                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
+                <Color>
+                  <LeftSide>Color:</LeftSide>
+                  <RightSide>
+                    <b>Light Brown</b>
+                  </RightSide>
+                </Color>
+                <Price>
+                  <LeftSide>Total:</LeftSide>
+                  <RightSide>
+                    <b>$278.9</b>
+                  </RightSide>
+                </Price>
+                <Quantity>
+                  <LeftSide>
+                    <Label for="quantity">Quantity: </Label>
+                  </LeftSide>
+                  <RightSide>
+                    <Select name="quantity" id="quantity">
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
+                    </Select>
+                  </RightSide>
+                </Quantity>
+                <RemoveButton>REMOVE</RemoveButton>
+              </ProductInfo>
+            </ProductDetail>
+
+            <ProductDetail>
+              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
+              <ProductInfo>
+                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
+                <Color>
+                  <LeftSide>Color:</LeftSide>
+                  <RightSide>
+                    <b>Light Brown</b>
+                  </RightSide>
+                </Color>
+                <Price>
+                  <LeftSide>Total:</LeftSide>
+                  <RightSide>
+                    <b>$278.9</b>
+                  </RightSide>
+                </Price>
+                <Quantity>
+                  <LeftSide>
+                    <Label for="quantity">Quantity: </Label>
+                  </LeftSide>
+                  <RightSide>
+                    <Select name="quantity" id="quantity">
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
+                    </Select>
+                  </RightSide>
+                </Quantity>
+                <RemoveButton>REMOVE</RemoveButton>
+              </ProductInfo>
+            </ProductDetail>
+          </Product>
+        </Left>
+        <Right>
+          <Legend>Order Summary</Legend>
           <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <OrderDetail>
+              Total: <b>$518</b>
+            </OrderDetail>
+            <OrderInfo>( inclusive of GST )</OrderInfo>
+            <Hr />
+            <CouponContainer>
+              <Fieldset>
+                <LegendCoupon>Coupon Code</LegendCoupon>
+                <Input />
+              </Fieldset>
+              <ButtonCoupon>APPLY</ButtonCoupon>
+            </CouponContainer>
           </Summary>
-        </Bottom>
-      </Wrapper>
+          <Hr />
+          <ShippingInfo>
+            Shipping costs will be calculated at checkout.
+          </ShippingInfo>
+          <Hr />
+          <Button bg="purple">CHECKOUT NOW</Button>
+          <Button bg="transparent">CONTINUE SHOPPING</Button>
+        </Right>
+      </CartContainer>
     </Container>
   );
 };
