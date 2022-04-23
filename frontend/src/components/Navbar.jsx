@@ -13,13 +13,13 @@ const Wrapper = styled.div`
   gap: 2rem;
   grid-template-columns: max-content auto max-content;
   align-items: center;
-${mobile({padding:"1rem"})};
+  ${mobile({ padding: "1rem" })};
 `;
 
-const Left = styled.div``
+const Left = styled.div``;
 
 const Center = styled.div`
-${mobile({display:"none"})};
+  ${mobile({ display: "none" })};
 `;
 
 const Right = styled.div`
@@ -47,7 +47,7 @@ const Input = styled.input`
   font-size: 1.2rem;
   color: #3e3e3e;
   padding: 0.5rem;
-  &:focus{
+  &:focus {
     outline: none;
   }
 `;
@@ -65,8 +65,15 @@ const Button = styled.button`
 `;
 
 const Logo = styled.h1`
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
   font-weight: bold;
   letter-spacing: 2px;
+  gap: 0.2rem;
+  background: linear-gradient(red, blue);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
   ${mobile({ fontSize: "24px" })}
 `;
 
@@ -75,6 +82,10 @@ const MenuItem = styled.div`
   cursor: pointer;
   color: purple;
   ${mobile({})}
+`;
+
+const LogoImage = styled.img`
+  height: 35px;
 `;
 
 const Navbar = () => {
@@ -87,7 +98,10 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Link to="/">
-            <Logo>DELSUR.</Logo>
+            <Logo>
+              <LogoImage src="https://sjkrta.github.io/sjkrta/brand.png" />{" "}
+              ELSUR.
+            </Logo>
           </Link>
         </Left>
         <Center>
