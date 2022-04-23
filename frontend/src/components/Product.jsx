@@ -1,13 +1,20 @@
-import {
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ratingStarGen } from "../ratingStarGen";
 
-
 const Container = styled.div`
   display: grid;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.3);
+  box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.3);
+  padding: 1rem;
+  border-radius: 10px;
+  transition:all 0.2s ease;
+  &:hover{
+    transform: scale(1.02);
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.7);
+  box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.7);
+  }
 `;
 const InfoContainer = styled.div`
   display: grid;
@@ -31,7 +38,7 @@ const Title = styled.div`
   font-size: 1.1rem;
   color: purple;
   letter-spacing: 1px;
-  text-transform:uppercase;
+  text-transform: uppercase;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -40,7 +47,7 @@ const Price = styled.div`
   color: black;
   font-weight: bold;
   letter-spacing: 1px;
-  font-size:1.2rem;
+  font-size: 1.1rem;
 `;
 const Ratings = styled.div`
   display: flex;
@@ -56,19 +63,15 @@ const RatingsCount = styled.div`
   color: purple;
 `;
 const ImgContainer = styled.div`
-  flex: 1;
-  flex-grow: 1;
-  height: 280px;
+  height: 200px;
+  width: 200px;
   display: flex;
   align-items: center;
   border-radius: 25px;
   margin-bottom: 1rem;
   justify-content: center;
   position: relative;
-  overflow:hidden;
-  &:hover ${Info} {
-    opacity: 1;
-  }
+  overflow: hidden;
 `;
 
 const Circle = styled.div`
@@ -80,7 +83,7 @@ const Circle = styled.div`
 `;
 
 const Image = styled.img`
-  width:100%;
+  width: 100%;
   height: 100%;
   object-fit: contain;
   z-index: 2;
@@ -104,7 +107,7 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   return (
-    <Link to={"/product/"+item.id} style={{ flexGrow: 1 }}>
+    <Link to={"/product/" + item.id} style={{ flexGrow: 1 }}>
       <Container>
         <ImgContainer>
           <Circle />
@@ -118,7 +121,8 @@ const Product = ({ item }) => {
         <InfoContainer>
           <Title>{item.name}</Title>
           <Ratings>
-            {ratingStarGen(item.rating)} <RatingsCount>( {item.numReviews} )</RatingsCount>
+            {ratingStarGen(item.rating)}{" "}
+            <RatingsCount>( {item.numReviews} )</RatingsCount>
           </Ratings>
           <Price>$ {item.price}</Price>
         </InfoContainer>

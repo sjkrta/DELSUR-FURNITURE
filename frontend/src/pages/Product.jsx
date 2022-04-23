@@ -1,10 +1,13 @@
-import { ShoppingCartOutlined } from "@material-ui/icons";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { mobile } from "../responsive";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import styled from "styled-components";
+
+import { mobile } from "../responsive";
 import { ratingStarGen } from "../ratingStarGen";
+
 import { CircularProgress } from "@material-ui/core";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";

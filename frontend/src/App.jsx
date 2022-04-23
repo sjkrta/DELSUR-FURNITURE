@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Reset from "./pages/Reset";
 
 const App = () => {
   const url = "http://127.0.0.1:8000/api/";
@@ -48,6 +51,9 @@ const App = () => {
     <>
       <Router>
         <Routes>
+        <Route path="login" element={<Login />}/>
+        <Route path="register" element={<Register/>}/>
+        <Route path="reset" element={<Reset/>}/>
           <Route path="/" element={<Home />}>
             <Route
               path="/"

@@ -1,4 +1,4 @@
-import { Description, Remove } from "@material-ui/icons";
+import { Delete, Description, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -41,7 +41,7 @@ const Left = styled.div``;
 
 const Product = styled.div`
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
 `;
 
 const Hr = styled.hr`
@@ -49,11 +49,13 @@ const Hr = styled.hr`
 `;
 
 const ProductDetail = styled.div`
+position: relative;
 padding: 1rem;
   display: grid;
   grid-template-columns: max-content auto max-content;
   gap: 1rem;
-  border: 1px solid #80008077;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.5);
+          box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.5);
   border-radius: 10px;
 `;
 
@@ -186,18 +188,17 @@ const Label = styled.label``;
 const LeftSide = styled.div``;
 const RightSide = styled.div``;
 const RemoveButton = styled.button`
+position: absolute;
+right: 0%;
+top: 0;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   background-color: transparent;
   color: purple;
-  border: 1px solid purple;
-  width: 200px;
-  letter-spacing: 1px;
-  border-radius: 5px;
-  font-weight: bold;
+  border: none;
   &:hover {
-    background-color: purple;
-    color: white;
+    color: #540054;
+    cursor: pointer;
   }
 `;
 
@@ -219,38 +220,6 @@ const Cart = () => {
           </Info>
           <Hr />
           <Product>
-            <ProductDetail>
-              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
-              <ProductInfo>
-                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
-                <Color>
-                  <LeftSide>Color:</LeftSide>
-                  <RightSide>
-                    <b>Light Brown</b>
-                  </RightSide>
-                </Color>
-                <Price>
-                  <LeftSide>Total:</LeftSide>
-                  <RightSide>
-                    <b>$278.9</b>
-                  </RightSide>
-                </Price>
-                <Quantity>
-                  <LeftSide>
-                    <Label for="quantity">Quantity: </Label>
-                  </LeftSide>
-                  <RightSide>
-                    <Select name="quantity" id="quantity">
-                      <Option value="1">1</Option>
-                      <Option value="2">2</Option>
-                      <Option value="3">3</Option>
-                      <Option value="4">4</Option>
-                    </Select>
-                  </RightSide>
-                </Quantity>
-                <RemoveButton>REMOVE</RemoveButton>
-              </ProductInfo>
-            </ProductDetail>
 
             <ProductDetail>
               <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
@@ -281,9 +250,43 @@ const Cart = () => {
                     </Select>
                   </RightSide>
                 </Quantity>
-                <RemoveButton>REMOVE</RemoveButton>
               </ProductInfo>
+                <RemoveButton><Delete/></RemoveButton>
             </ProductDetail>
+
+                        <ProductDetail>
+              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
+              <ProductInfo>
+                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
+                <Color>
+                  <LeftSide>Color:</LeftSide>
+                  <RightSide>
+                    <b>Light Brown</b>
+                  </RightSide>
+                </Color>
+                <Price>
+                  <LeftSide>Total:</LeftSide>
+                  <RightSide>
+                    <b>$278.9</b>
+                  </RightSide>
+                </Price>
+                <Quantity>
+                  <LeftSide>
+                    <Label for="quantity">Quantity: </Label>
+                  </LeftSide>
+                  <RightSide>
+                    <Select name="quantity" id="quantity">
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
+                    </Select>
+                  </RightSide>
+                </Quantity>
+              </ProductInfo>
+                <RemoveButton><Delete/></RemoveButton>
+            </ProductDetail>
+
           </Product>
         </Left>
         <Right>
