@@ -1,4 +1,4 @@
-import { Delete, Description, Remove } from "@material-ui/icons";
+import { Close } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -13,7 +13,7 @@ const Title = styled.h1`
   color: purple;
 `;
 
-const Button = styled.button`
+const ButtonItem = styled.button`
   padding: 0.7rem 1rem;
   letter-spacing: 1px;
   font-weight: 600;
@@ -54,8 +54,8 @@ padding: 1rem;
   display: grid;
   grid-template-columns: max-content auto max-content;
   gap: 1rem;
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.5);
-          box-shadow: 0px 0px 5px 5px rgba(185, 185, 185, 0.5);
+  -webkit-box-shadow: 2px 3px 3px 5px rgba(185, 185, 185, 0.5);
+          box-shadow: 2px 3px 3px 5px rgba(185, 185, 185, 0.5);
   border-radius: 10px;
 `;
 
@@ -187,6 +187,13 @@ const Option = styled.option``;
 const Label = styled.label``;
 const LeftSide = styled.div``;
 const RightSide = styled.div``;
+
+
+const PromoCode = styled.span`
+font-weight: bold;
+color: black;
+cursor: pointer;
+`
 const RemoveButton = styled.button`
 position: absolute;
 right: 0%;
@@ -194,15 +201,27 @@ top: 0;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   background-color: transparent;
-  color: purple;
   border: none;
+  transition: all 0.1s ease;
   &:hover {
     color: #540054;
+    transform: scale(1.1);
     cursor: pointer;
   }
 `;
 
 const Cart = () => {
+  const promocode = "DELSUR2022"
+  const copyText = () => {
+    navigator.clipboard.writeText(promocode)
+  }
+  const Icon = {
+    fontSize: "2.5rem",
+    position: "absolute",
+    top: 5,
+    right:10,
+  };
+
   return (
     <Container>
       <Title>YOUR CART ( 1 )</Title>
@@ -212,7 +231,7 @@ const Cart = () => {
           <Info>
             <InfoTitle>15% OFF ALL FURNITURE</InfoTitle>
             <InfoDetail>
-              Apply promo code <b>DELSUR2022</b> to get the discount.
+              Apply promo code <PromoCode onClick={copyText}>{promocode}</PromoCode> to get the discount.
             </InfoDetail>
             <InfoTerm>
               Offer ends 25th May. <A href="#">T&C Apply</A>
@@ -251,7 +270,7 @@ const Cart = () => {
                   </RightSide>
                 </Quantity>
               </ProductInfo>
-                <RemoveButton><Delete/></RemoveButton>
+                <RemoveButton><Close style={Icon}/></RemoveButton>
             </ProductDetail>
 
                         <ProductDetail>
@@ -284,7 +303,7 @@ const Cart = () => {
                   </RightSide>
                 </Quantity>
               </ProductInfo>
-                <RemoveButton><Delete/></RemoveButton>
+                <RemoveButton><Close style={Icon}/></RemoveButton>
             </ProductDetail>
 
           </Product>
@@ -310,8 +329,8 @@ const Cart = () => {
             Shipping costs will be calculated at checkout.
           </ShippingInfo>
           <Hr />
-          <Button bg="purple">CHECKOUT NOW</Button>
-          <Button bg="transparent">CONTINUE SHOPPING</Button>
+          <ButtonItem bg="purple">CHECKOUT NOW</ButtonItem>
+          <ButtonItem bg="transparent">CONTINUE SHOPPING</ButtonItem>
         </Right>
       </CartContainer>
     </Container>

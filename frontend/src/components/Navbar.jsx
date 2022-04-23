@@ -72,8 +72,8 @@ const Logo = styled.h1`
   letter-spacing: 2px;
   gap: 0.2rem;
   background: linear-gradient(red, blue);
-  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   ${mobile({ fontSize: "24px" })}
 `;
 
