@@ -17,9 +17,6 @@ router.register(r'order-item', views.OrderItemViewSet),
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('register/', views_accounts.register_view, name='register'),
-    path('login/', views_accounts.login_view, name='login'),
-    path('logout/', views_accounts.logout_view, name='logout'),
     path('', views.index, name='home'),
 ]
 

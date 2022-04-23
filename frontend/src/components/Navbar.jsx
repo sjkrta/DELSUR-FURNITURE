@@ -99,12 +99,12 @@ const Navbar = () => {
           </Form>
         </Center>
         <Right>
-          <a href="/register/">
+          <Link to="/register">
             <MenuItem>Register</MenuItem>
-          </a>
-          <a href="/login/">
+          </Link>
+          <Link to="/login">
             <MenuItem>Sign In</MenuItem>
-          </a>
+          </Link>
           <Link to="/cart/">
             <MenuItem>
               <Badge badgeContent={4} color="primary">
