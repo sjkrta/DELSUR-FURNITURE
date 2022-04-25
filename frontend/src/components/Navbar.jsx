@@ -1,5 +1,6 @@
 import { Badge } from "@material-ui/core";
 import { SearchRounded, ShoppingCartOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
@@ -10,15 +11,20 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 0.5rem 1rem;
   display: grid;
+  overflow: hidden;
   grid-template-columns: max-content auto max-content;
   align-items: center;
-  ${mobile({ padding: "1rem" })};
+  ${mobile({
+    padding: "1rem",
+    gridTemplateColumns: "max-content auto",
+    justifyContent: "space-between",
+  })};
 `;
 
 const Left = styled.div``;
 
 const Center = styled.div`
-margin: 0 2rem;
+  margin: 0 2rem;
   ${mobile({ display: "none" })};
 `;
 
@@ -27,7 +33,8 @@ const Right = styled.div`
   grid-auto-flow: column;
   align-items: center;
   justify-content: end;
-  ${mobile({})}
+  gap: 0.5rem;
+  ${mobile()}
 `;
 
 const Form = styled.form`
@@ -80,7 +87,7 @@ const MenuItem = styled.div`
   max-width: 150px;
   grid-auto-flow: column;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.6rem;
   margin: 0 0.2rem;
   border-radius: 20px;
   font-size: 1.1rem;
@@ -91,7 +98,6 @@ const MenuItem = styled.div`
   &:hover {
     background-color: white;
   }
-  ${mobile({})}
 `;
 
 const LogoImage = styled.img`
@@ -103,15 +109,65 @@ const UserImg = styled.img`
   border-radius: 50%;
 `;
 
+const AccountsLink = styled.div`
+display: flex;
+  ${mobile({ display: "none" })}
+`;
+
 const UserName = styled.div`
   font-size: 1.4rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  ${mobile({display:"none"})}
+  ${mobile({ display: "none" })}
+`;
+
+const NavMenu = styled.div`
+  display: grid;
+  margin: 0 1rem;
+  justify-items: center;
+  gap: 0.6rem;
+  border-bottom: 1px solid #80808041;
+`;
+const BarContainer = styled.div`
+  height: 38px;
+  width: 38px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  display: none;
+  ${mobile({ display: "grid" })}
+`;
+
+const Bar = styled.div`
+  height: 0.3rem;
+  width: 100%;
+  background-color: purple;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  &:nth-child(1) {
+    transform: translate(${(props) => props.barStyle && "0px, 13px"})
+      rotate(${(props) => props.barStyle && "45deg"});
+  }
+  &:nth-child(2) {
+    transform: translateX(${(props) => props.barStyle && "40px"});
+  }
+  &:nth-child(3) {
+    transform: translate(${(props) => props.barStyle && "0px, -13px"})
+      rotate(${(props) => props.barStyle && "-45deg"});
+  }
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Navbar = ({ isAuthenticated }) => {
+  const [barStyle, setBarStyle] = useState(false);
+
+  const handleClick = () => {
+    setBarStyle(!barStyle);
+  };
+
   const handleForm = (e) => {
     e.preventDefault();
   };
@@ -153,18 +209,38 @@ const Navbar = ({ isAuthenticated }) => {
               </Link>
             </>
           ) : (
-            <>
+            <AccountsLink>
               <Link to="/register">
                 <MenuItem>Register</MenuItem>
               </Link>
               <Link to="/login">
                 <MenuItem>Sign In</MenuItem>
               </Link>
-            </>
+            </AccountsLink>
           )}
-          <BurgerIcon/>
+          <BarContainer onClick={handleClick}>
+            <Bar barStyle={barStyle}></Bar>
+            <Bar barStyle={barStyle}></Bar>
+            <Bar barStyle={barStyle}></Bar>
+          </BarContainer>
         </Right>
       </Wrapper>
+      {barStyle && (
+        <NavMenu>
+          <Form onSubmit={handleForm}>
+            <Input type="text" id="search" />
+            <Button type="submit">
+              <SearchRounded />
+            </Button>
+          </Form>
+          <Link to="/login">
+            <MenuItem>Sign In</MenuItem>
+          </Link>
+          <Link to="/register">
+            <MenuItem>Register</MenuItem>
+          </Link>
+        </NavMenu>
+      )}
     </Container>
   );
 };

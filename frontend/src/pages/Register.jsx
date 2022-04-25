@@ -3,14 +3,15 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Check, Close } from "@material-ui/icons";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   background: linear-gradient(#800080a7, #ffffff);
 `;
 const Form = styled.form`
   max-width: 650px;
-  padding: 0 25px;
-  height: 100vh;
+  padding: 25px 25px;
+  min-height: 100vh;
   margin: auto;
   display: grid;
   align-content: center;
@@ -29,6 +30,7 @@ const InputContainerWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  ${mobile({gridTemplateColumns:"1fr"})}
 `;
 const Input = styled.input`
   background-color: white;
@@ -92,6 +94,7 @@ const InputContainer = styled.div`
   display: grid;
   align-content: center;
   padding: 0 70px;
+  ${mobile({padding: "0 0.5rem"})}
 `;
 
 export default function Register({ usersUrl, apiUrl }) {
@@ -279,7 +282,7 @@ export default function Register({ usersUrl, apiUrl }) {
           </Link>
         </Button>
         <Info>
-          Already have an account?{" "}
+          Already have an account?<br/>
           <Link to="/login">
             <b>Login here.</b>
           </Link>

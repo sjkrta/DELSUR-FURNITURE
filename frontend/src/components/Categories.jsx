@@ -6,7 +6,7 @@ import LoadingAnimation from "./LoadingAnimation";
 const Container = styled.div`
   display: grid;
   grid-auto-flow: column;
-  justify-content: center;
+  justify-content: start;
   overflow: auto;
   overscroll-behavior-inline: contain;
   grid-template-rows: min-content;

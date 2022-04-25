@@ -143,7 +143,7 @@ export default function Login({ authUrl }) {
         </Info>
         <Button>LOGIN</Button>
         <Info>
-          Don't have an account yet?{" "}
+          Don't have an account yet?<br/>
           <Link to="/register">
             <b>Sign up now.</b>
           </Link>

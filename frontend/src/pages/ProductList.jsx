@@ -11,10 +11,17 @@ const Container = styled.div`
 
 const Title = styled.h1`
 text-align: center;
+  font-size: 2rem;
+  color: purple;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
 `;
 
 const FilterItems = styled.div`
   display: flex;
+  justify-content: end;
+  gap: 1rem;
 `;
 
 const FilterContainer = styled.div`
@@ -28,14 +35,18 @@ const Filter = styled.div`
 `;
 
 const FilterText = styled.div`
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 1.3rem;
   padding: 0.5rem 0;
+  color: purple;
 `;
 
 const Select = styled.select`
-  padding: 10px;
-  margin-right: 20px;
+  padding: 0.5rem;
+  max-width: 250px;
+  background-color: transparent;
+  border: 2px solid #c300ff83;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 const Option = styled.option``;
 
