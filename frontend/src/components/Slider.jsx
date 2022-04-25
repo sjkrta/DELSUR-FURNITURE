@@ -56,26 +56,28 @@ const Slide = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
-  ${mobile({ gridTemplateColumns: "1fr" })}
+  ${mobile({ gridTemplateColumns: "1fr", height:"600px" })}
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 500px;
   object-fit: contain;
-  ${mobile({ height: "250px" })}
+  ${mobile({ height: "200px" })}
 `;
 
 const Title = styled.h1`
   font-size: 2.7rem;
   color: purple;
+  ${mobile({ fontSize: "2.2rem" })}
 `;
 
 const Desc = styled.p`
   margin: 20px 10px;
   font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  ${mobile({ fontSize: "1rem", margin:"10px 5px" })}
 `;
 
 const Button = styled.button`

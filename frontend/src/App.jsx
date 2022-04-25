@@ -23,7 +23,7 @@ const App = () => {
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
   const [slides, setSlides] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // const url = "http://127.0.0.1:8000/";
   const url = "https://delsur-furniture.herokuapp.com/";

@@ -3,13 +3,13 @@ import { SearchRounded, ShoppingCartOutlined } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import BurgerIcon from "./BurgerIcon";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 1rem;
   display: grid;
-  gap: 2rem;
   grid-template-columns: max-content auto max-content;
   align-items: center;
   ${mobile({ padding: "1rem" })};
@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 const Left = styled.div``;
 
 const Center = styled.div`
+margin: 0 2rem;
   ${mobile({ display: "none" })};
 `;
 
@@ -26,7 +27,6 @@ const Right = styled.div`
   grid-auto-flow: column;
   align-items: center;
   justify-content: end;
-  justify-items: end;
   ${mobile({})}
 `;
 
@@ -108,6 +108,7 @@ const UserName = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  ${mobile({display:"none"})}
 `;
 
 const Navbar = ({ isAuthenticated }) => {
@@ -161,6 +162,7 @@ const Navbar = ({ isAuthenticated }) => {
               </Link>
             </>
           )}
+          <BurgerIcon/>
         </Right>
       </Wrapper>
     </Container>
