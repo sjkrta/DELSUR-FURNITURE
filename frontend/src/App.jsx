@@ -26,7 +26,7 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // const url = "http://127.0.0.1:8000/";
-  const url = "http://delsur-furniture.herokuapp.com/";
+  const url = "https://delsur-furniture.herokuapp.com/";
   const apiUrl = `${url}api/`;
   const sliderUrl = `${url}api/slider/`;
   const productUrl = `${url}api/product/`;
