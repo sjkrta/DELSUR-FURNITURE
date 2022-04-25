@@ -1,13 +1,12 @@
-import { CircularProgress } from "@material-ui/core";
 import styled from "styled-components";
-import { categories } from "../data";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
+import Loading from "./Loading";
 
 const Container = styled.div`
   display: grid;
   grid-auto-flow: column;
-  justify-content: start;
+  justify-content: center;
   overflow: auto;
   overscroll-behavior-inline: contain;
   grid-template-rows: min-content;
@@ -37,9 +36,7 @@ const Categories = ({ category }) => {
   return (
     <Container>
       {category === null ? (
-        <center>
-          <CircularProgress />
-        </center>
+        <center><Loading/></center>
       ) : (
         category.map((item) => <CategoryItem item={item} key={item.id} />)
       )}

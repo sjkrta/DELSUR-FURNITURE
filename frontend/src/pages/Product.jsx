@@ -13,6 +13,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
 import axios from "axios";
+import Loading from "../components/Loading";
 
 const Container = styled.div`
   display: grid;
@@ -168,7 +169,7 @@ const Product = ({ productUrl }) => {
   return (
     <>
       {productItem === null ? (
-        <CircularProgress />
+        <center><Loading/></center>
       ) : (
         <Container>
           <ImgContainer>

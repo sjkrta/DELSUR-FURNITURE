@@ -19,21 +19,7 @@ const Container = styled.div`
 const InfoContainer = styled.div`
   display: grid;
 `;
-const Info = styled.div`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-  cursor: pointer;
-`;
+
 const Title = styled.div`
   font-size: 1.1rem;
   color: purple;
@@ -68,8 +54,8 @@ const ImgContainer = styled.div`
   display: flex;
   align-items: center;
   border-radius: 25px;
+  margin: 0 auto;
   margin-bottom: 1rem;
-  justify-content: center;
   position: relative;
   overflow: hidden;
 `;
@@ -110,13 +96,7 @@ const Product = ({ item }) => {
     <Link to={"/product/" + item.id} style={{ flexGrow: 1 }}>
       <Container>
         <ImgContainer>
-          <Circle />
           <Image src={item.images[0].image} />
-          <Info>
-            <Icon>
-              <ShoppingCartOutlined />
-            </Icon>
-          </Info>
         </ImgContainer>
         <InfoContainer>
           <Title>{item.name}</Title>

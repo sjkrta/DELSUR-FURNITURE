@@ -1,4 +1,4 @@
-import { Close } from "@material-ui/icons";
+import { Close, FileCopyOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -231,7 +231,7 @@ const Cart = () => {
           <Info>
             <InfoTitle>15% OFF ALL FURNITURE</InfoTitle>
             <InfoDetail>
-              Apply promo code <PromoCode onClick={copyText}>{promocode}</PromoCode> to get the discount.
+              Apply promo code <PromoCode onClick={copyText}>{promocode} <FileCopyOutlined style={{fontSize:"1rem"}}/> </PromoCode> to get the discount.
             </InfoDetail>
             <InfoTerm>
               Offer ends 25th May. <A href="#">T&C Apply</A>

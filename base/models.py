@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.forms import CharField, ImageField
 
-# Create your models here.
 class Slider(models.Model):
     title  = models.CharField(max_length=50)
     description = models.TextField(max_length=200)

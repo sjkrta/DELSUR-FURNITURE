@@ -28,7 +28,6 @@ const Right = styled.div`
   align-items: center;
   justify-content: end;
   justify-items: end;
-  gap: 1rem;
   ${mobile({})}
 `;
 
@@ -78,9 +77,20 @@ const Logo = styled.h1`
 `;
 
 const MenuItem = styled.div`
+  display: grid;
+  max-width: 150px;
+  grid-auto-flow: column;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0 0.2rem;
+  border-radius: 20px;
   font-size: 1.1rem;
+  gap: 0.2rem;
   cursor: pointer;
   color: purple;
+  &:hover {
+    background-color: white;
+  }
   ${mobile({})}
 `;
 
@@ -88,7 +98,19 @@ const LogoImage = styled.img`
   height: 35px;
 `;
 
-const Navbar = () => {
+const UserImg = styled.img`
+  height: 35px;
+  border-radius: 50%;
+`;
+
+const UserName = styled.div`
+  font-size: 1.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const Navbar = ({ isAuthenticated }) => {
   const handleForm = (e) => {
     e.preventDefault();
   };
@@ -113,19 +135,32 @@ const Navbar = () => {
           </Form>
         </Center>
         <Right>
-          <Link to="/register">
-            <MenuItem>Register</MenuItem>
-          </Link>
-          <Link to="/login">
-            <MenuItem>Sign In</MenuItem>
-          </Link>
           <Link to="/cart/">
             <MenuItem>
               <Badge badgeContent={4} color="primary">
-                <ShoppingCartOutlined />
+                <ShoppingCartOutlined style={{ fontSize: "1.8rem" }} />
               </Badge>
             </MenuItem>
           </Link>
+          {isAuthenticated ? (
+            <>
+              <Link to="/logout">
+                <MenuItem>
+                  <UserImg src="https://yt3.ggpht.com/a/AATXAJxfcC93ayTXatJcZ_XDjj0-jFf4HfVRKxW6Vw=s900-c-k-c0xffffffff-no-rj-mo" />
+                  <UserName>Suraj Kumar thapa</UserName>
+                </MenuItem>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/register">
+                <MenuItem>Register</MenuItem>
+              </Link>
+              <Link to="/login">
+                <MenuItem>Sign In</MenuItem>
+              </Link>
+            </>
+          )}
         </Right>
       </Wrapper>
     </Container>

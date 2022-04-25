@@ -36,6 +36,9 @@ const InputContainer = styled.div`
   background-color: white;
   display: grid;
   grid-template-columns: auto max-content;
+  &:hover{
+    cursor: pointer;
+  }
   ${mobile({ width: "80%" })}
 `;
 

@@ -2,24 +2,39 @@ import Product from "./pages/Product";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
+import Checkout from "./pages/Checkout";
+import Carousel from "./components/Carousel";
 
 const App = () => {
-  const url = "http://127.0.0.1:8000/api/";
-
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
   const [slides, setSlides] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  const sliderUrl = `${url}slider/`;
-  const productUrl = `${url}product/`;
-  const categoryUrl = `${url}category/`;
+  const url = "http://127.0.0.1:8000/";
+  const apiUrl = `${url}api/`;
+  const sliderUrl = `${url}api/slider/`;
+  const productUrl = `${url}api/product/`;
+  const categoryUrl = `${url}api/category/`;
+  const usersUrl = `${url}api/users/`;
+  const authUrl = `${url}auth/`;
+
+  const PrivateWrapper = ({ isAuthenticated }) => {
+    return isAuthenticated ? <Navigate to="/" /> : <Outlet />;
+  };
 
   useEffect(
     () =>
@@ -45,26 +60,44 @@ const App = () => {
     []
   );
 
-
-
   return (
     <>
       <Router>
         <Routes>
-        <Route path="login" element={<Login />}/>
-        <Route path="register" element={<Register/>}/>
-        <Route path="reset" element={<Reset/>}/>
-          <Route path="/" element={<Home />}>
+          <Route element={<PrivateWrapper isAuthenticated={isAuthenticated} />}>
+            <Route
+              path="login"
+              element={<Login usersUrl={usersUrl} authUrl={authUrl} />}
+            />
+            <Route
+              path="register"
+              element={<Register usersUrl={usersUrl} apiUrl={apiUrl} />}
+            />
+            <Route path="reset" element={<Reset usersUrl={usersUrl} />} />
+          </Route>
+          <Route path="/" element={<Home isAuthenticated={isAuthenticated} />}>
             <Route
               path="/"
-              element={<Dashboard product={product} category={category} slides={slides}/>}
+              element={
+                <Dashboard
+                  product={product}
+                  category={category}
+                  slides={slides}
+                />
+              }
             />
+            <Route path="carousel" element={<Carousel />} />
             <Route path="product" element={<ProductList product={product} />} />
             <Route
               path="product/:productId/"
-              element={<Product productUrl={productUrl}/>}
+              element={<Product productUrl={productUrl} />}
             />
             <Route path="cart" element={<Cart />} />
+            <Route
+              element={<PrivateWrapper isAuthenticated={!isAuthenticated} />}
+            >
+              <Route path="checkout" element={<Checkout />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

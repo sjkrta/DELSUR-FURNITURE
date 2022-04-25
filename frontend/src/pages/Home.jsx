@@ -4,10 +4,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 
-const Home = () => {
+const Home = ({isAuthenticated}) => {
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated}/>
       <Outlet/>
       <Newsletter/>
       <Footer/>
