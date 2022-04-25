@@ -1,6 +1,5 @@
 import { Badge } from "@material-ui/core";
 import { SearchRounded, ShoppingCartOutlined } from "@material-ui/icons";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
@@ -8,7 +7,7 @@ import { mobile } from "../responsive";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0.5rem;
   display: grid;
   gap: 2rem;
   grid-template-columns: max-content auto max-content;
@@ -86,6 +85,7 @@ const MenuItem = styled.div`
   border-radius: 20px;
   font-size: 1.1rem;
   gap: 0.2rem;
+  justify-self: end;
   cursor: pointer;
   color: purple;
   &:hover {
@@ -144,7 +144,7 @@ const Navbar = ({ isAuthenticated }) => {
           </Link>
           {isAuthenticated ? (
             <>
-              <Link to="/logout">
+              <Link to="/profile/">
                 <MenuItem>
                   <UserImg src="https://yt3.ggpht.com/a/AATXAJxfcC93ayTXatJcZ_XDjj0-jFf4HfVRKxW6Vw=s900-c-k-c0xffffffff-no-rj-mo" />
                   <UserName>Suraj Kumar thapa</UserName>

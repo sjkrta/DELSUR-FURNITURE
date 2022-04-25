@@ -6,6 +6,7 @@ const Container = styled.div`
   max-width: 1400px;
   margin: auto;
   padding: 50px;
+  ${mobile({padding:"20px"})}
 `;
 
 const Title = styled.h1`
@@ -32,7 +33,7 @@ const ButtonItem = styled.button`
 
 const CartContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 325px;
+  grid-template-columns: 2fr 1fr;
   align-items: start;
   gap: 1rem;
   ${mobile({ gridTemplateColumns: "1fr" })}
@@ -49,28 +50,30 @@ const Hr = styled.hr`
 `;
 
 const ProductDetail = styled.div`
-position: relative;
-padding: 1rem;
+  position: relative;
+  padding: 1rem;
   display: grid;
   grid-template-columns: max-content auto max-content;
   gap: 1rem;
   -webkit-box-shadow: 2px 3px 3px 5px rgba(185, 185, 185, 0.5);
-          box-shadow: 2px 3px 3px 5px rgba(185, 185, 185, 0.5);
+  box-shadow: 2px 3px 3px 5px rgba(185, 185, 185, 0.5);
   border-radius: 10px;
+  ${mobile({gridTemplateColumns:"1fr"})}
 `;
 
 const Image = styled.img`
   height: 200px;
   width: 200px;
+  margin: auto;
   border-radius: 10px;
 `;
 
 const Info = styled.div`
   background-color: #ffd6ff;
-  display: grid;
-  place-items: center;
   padding: 1.5rem;
   border-radius: 10px;
+  text-align: center;
+
 `;
 const InfoTitle = styled.h2`
   color: purple;
@@ -126,7 +129,7 @@ const A = styled.a`
 const Select = styled.select`
   background-color: transparent;
   padding: 0.3rem;
-  width: 120px;
+  max-width: 120px;
 `;
 
 const OrderDetail = styled.div`
@@ -161,7 +164,7 @@ const ShippingInfo = styled.p`
 `;
 
 const LegendCoupon = styled.legend`
-  padding: 0 1rem;
+  padding: 0 0.2rem;
 `;
 
 const ButtonCoupon = styled.button`
@@ -172,14 +175,13 @@ const ButtonCoupon = styled.button`
   border-radius: 5px;
   color: white;
   background-color: purple;
-  &:hover{
-    cursor:pointer;
+  &:hover {
+    cursor: pointer;
   }
 `;
 
 const CouponContainer = styled.div`
   display: grid;
-  gap: 1rem;
   grid-template-columns: auto max-content;
 `;
 
@@ -188,16 +190,15 @@ const Label = styled.label``;
 const LeftSide = styled.div``;
 const RightSide = styled.div``;
 
-
 const PromoCode = styled.span`
-font-weight: bold;
-color: black;
-cursor: pointer;
-`
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+`;
 const RemoveButton = styled.button`
-position: absolute;
-right: 0%;
-top: 0;
+  position: absolute;
+  right: 0%;
+  top: 0;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   background-color: transparent;
@@ -211,15 +212,15 @@ top: 0;
 `;
 
 const Cart = () => {
-  const promocode = "DELSUR2022"
+  const promocode = "DELSUR2022";
   const copyText = () => {
-    navigator.clipboard.writeText(promocode)
-  }
+    navigator.clipboard.writeText(promocode);
+  };
   const Icon = {
     fontSize: "2.5rem",
     position: "absolute",
     top: 5,
-    right:10,
+    right: 10,
   };
 
   return (
@@ -231,7 +232,11 @@ const Cart = () => {
           <Info>
             <InfoTitle>15% OFF ALL FURNITURE</InfoTitle>
             <InfoDetail>
-              Apply promo code <PromoCode onClick={copyText}>{promocode} <FileCopyOutlined style={{fontSize:"1rem"}}/> </PromoCode> to get the discount.
+              Apply promo code{" "}
+              <PromoCode onClick={copyText}>
+                {promocode} <FileCopyOutlined style={{ fontSize: "1rem" }} />{" "}
+              </PromoCode>{" "}
+              to get the discount.
             </InfoDetail>
             <InfoTerm>
               Offer ends 25th May. <A href="#">T&C Apply</A>
@@ -239,6 +244,40 @@ const Cart = () => {
           </Info>
           <Hr />
           <Product>
+            <ProductDetail>
+              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
+              <ProductInfo>
+                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
+                <Color>
+                  <LeftSide>Color:</LeftSide>
+                  <RightSide>
+                    <b>Light Brown</b>
+                  </RightSide>
+                </Color>
+                <Price>
+                  <LeftSide>Total:</LeftSide>
+                  <RightSide>
+                    <b>$278.9</b>
+                  </RightSide>
+                </Price>
+                <Quantity>
+                  <LeftSide>
+                    <Label for="quantity">Quantity: </Label>
+                  </LeftSide>
+                  <RightSide>
+                    <Select name="quantity" id="quantity">
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
+                    </Select>
+                  </RightSide>
+                </Quantity>
+              </ProductInfo>
+              <RemoveButton>
+                <Close style={Icon} />
+              </RemoveButton>
+            </ProductDetail>
 
             <ProductDetail>
               <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
@@ -270,42 +309,10 @@ const Cart = () => {
                   </RightSide>
                 </Quantity>
               </ProductInfo>
-                <RemoveButton><Close style={Icon}/></RemoveButton>
+              <RemoveButton>
+                <Close style={Icon} />
+              </RemoveButton>
             </ProductDetail>
-
-                        <ProductDetail>
-              <Image src="https://image.zanui.com.au/data/product/24/6881/639073.jpg" />
-              <ProductInfo>
-                <ProductTitle>Cuppa Entertainment Unit</ProductTitle>
-                <Color>
-                  <LeftSide>Color:</LeftSide>
-                  <RightSide>
-                    <b>Light Brown</b>
-                  </RightSide>
-                </Color>
-                <Price>
-                  <LeftSide>Total:</LeftSide>
-                  <RightSide>
-                    <b>$278.9</b>
-                  </RightSide>
-                </Price>
-                <Quantity>
-                  <LeftSide>
-                    <Label for="quantity">Quantity: </Label>
-                  </LeftSide>
-                  <RightSide>
-                    <Select name="quantity" id="quantity">
-                      <Option value="1">1</Option>
-                      <Option value="2">2</Option>
-                      <Option value="3">3</Option>
-                      <Option value="4">4</Option>
-                    </Select>
-                  </RightSide>
-                </Quantity>
-              </ProductInfo>
-                <RemoveButton><Close style={Icon}/></RemoveButton>
-            </ProductDetail>
-
           </Product>
         </Left>
         <Right>

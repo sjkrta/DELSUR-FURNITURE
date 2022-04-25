@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 import Reset from "./pages/Reset";
 import Checkout from "./pages/Checkout";
 import Carousel from "./components/Carousel";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [product, setProduct] = useState(null);
@@ -24,7 +25,8 @@ const App = () => {
   const [slides, setSlides] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  const url = "http://127.0.0.1:8000/";
+  // const url = "http://127.0.0.1:8000/";
+  const url = "http://delsur-furniture.herokuapp.com/";
   const apiUrl = `${url}api/`;
   const sliderUrl = `${url}api/slider/`;
   const productUrl = `${url}api/product/`;
@@ -75,7 +77,7 @@ const App = () => {
             />
             <Route path="reset" element={<Reset usersUrl={usersUrl} />} />
           </Route>
-          <Route path="/" element={<Home isAuthenticated={isAuthenticated} />}>
+          <Route element={<Home isAuthenticated={isAuthenticated} />}>
             <Route
               path="/"
               element={
@@ -99,6 +101,11 @@ const App = () => {
               <Route path="checkout" element={<Checkout />} />
             </Route>
           </Route>
+          <Route
+              element={<PrivateWrapper isAuthenticated={!isAuthenticated} />}
+            >
+              <Route path="profile" element={<Profile />} />
+            </Route>
         </Routes>
       </Router>
     </>

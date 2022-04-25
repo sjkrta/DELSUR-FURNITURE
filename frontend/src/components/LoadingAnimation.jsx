@@ -58,7 +58,7 @@ const Wave = styled.div`
 `;
 
 
-export default function Loading() {
+export default function LoadingAnimation() {
   return (
     <Center>
       <Wave></Wave>

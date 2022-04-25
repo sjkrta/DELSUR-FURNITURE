@@ -13,7 +13,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
 import axios from "axios";
-import Loading from "../components/Loading";
+import Loading from "../components/LoadingAnimation"
 
 const Container = styled.div`
   display: grid;
@@ -26,7 +26,7 @@ const Container = styled.div`
   margin-bottom: 2rem;
   border-radius: 10px;
   gap: 50px;
-  ${mobile({ gridTemplateColumns: "1fr" })}
+  ${mobile({ gridTemplateColumns: "1fr",padding:"1rem" })}
 `;
 
 const ImgContainer = styled.div`

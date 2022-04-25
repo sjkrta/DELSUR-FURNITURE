@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Products from "../components/Products";
-// import { mobile } from "../responsive";
+import { mobile } from "../responsive";
 const Container = styled.div`
   max-width: 1200px;
   padding: 25px 50px;
   margin: auto;
+  ${mobile({padding:"10px"})}
+
 `;
 
 const Title = styled.h1`

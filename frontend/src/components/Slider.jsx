@@ -2,7 +2,7 @@ import { ArrowBack, ArrowForward } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import Loading from "./Loading";
+import LoadingAnimation from "./LoadingAnimation";
 
 const Container = styled.div`
   display: flex;
@@ -108,7 +108,7 @@ const Slider = ({ slides }) => {
     <>
       {slides === null ? (
         <center>
-          <Loading />
+          <LoadingAnimation />
         </center>
       ) : (
         <Container>

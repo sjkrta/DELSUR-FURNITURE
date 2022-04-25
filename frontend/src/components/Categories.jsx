@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
-import Loading from "./Loading";
+import LoadingAnimation from "./LoadingAnimation";
 
 const Container = styled.div`
   display: grid;
@@ -36,7 +36,7 @@ const Categories = ({ category }) => {
   return (
     <Container>
       {category === null ? (
-        <center><Loading/></center>
+        <center><LoadingAnimation/></center>
       ) : (
         category.map((item) => <CategoryItem item={item} key={item.id} />)
       )}
